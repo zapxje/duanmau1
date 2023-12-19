@@ -114,12 +114,13 @@ if (isset($_REQUEST['act']) && !empty($_REQUEST['act'])) {
                                 if (isset($_REQUEST['name']) && !empty($_REQUEST['name'])) {
                                     $name = $_REQUEST['name'];
                                     $description = $_REQUEST['description'];
-                                    if (validateNameProperty($name)) {
-                                        $notification = 'nameExist';
-                                    } else {
+                                    // if (validateNameProperty($name)) {
+                                    //     $notification = 'nameExist';
+                                    // } else {
+
                                         addProperty($idProduct, $name, $description);
                                         $notification = 'successAdd';
-                                    }
+                                    // }
                                 }
                                 break;
                             case '2':
