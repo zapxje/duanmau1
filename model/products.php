@@ -44,6 +44,19 @@ function addProduct($idCategory, $idBrand, $name, $price, $price_sale, $quantity
     VALUES(" . $idCategory . ", " . $idBrand . " , '" . $name . "'," . $price . ", " . $price_sale . ", " . $quantity . ", '" . $description . "', '" . $image . "')";
     return querySql($sql);
 }
+
+function updateProduct($idProduct, $name, $price, $price_sale, $quantity, $description)
+{
+    $sql = "UPDATE products 
+            SET name = '$name', 
+                price = $price, 
+                price_sale = $price_sale, 
+                quantity = $quantity, 
+                description = '$description'
+            WHERE id = $idProduct";
+    return querySql($sql);
+}
+
 //Lấy 5 sản phẩm theo danh mục (sản phẩm mới)
 function getProductByCategoryNew($id)
 {
@@ -212,5 +225,68 @@ function getTotalProductBySearch($keyWord)
 {
     $sql = "SELECT * FROM products
     WHERE name LIKE '%$keyWord%'";
+    return getAll($sql);
+}
+// ======================= Lấy Sản Phẩm Footer(Bán chạy, Topsel, New) ===================== //
+function getTopsellingFooter1()
+{
+    $sql = "SELECT p.* , ca.name AS category_name, br.name AS brand_name 
+    FROM products AS p 
+    LEFT JOIN categories AS ca ON ca.id = p.id_category 
+    LEFT JOIN brands AS br ON br.id = p.id_brand 
+    ORDER BY number_of_purchases DESC
+    LIMIT 3 OFFSET 0";
+    return getAll($sql);
+}
+function getTopsellingFooter2()
+{
+    $sql = "SELECT p.* , ca.name AS category_name, br.name AS brand_name 
+    FROM products AS p 
+    LEFT JOIN categories AS ca ON ca.id = p.id_category 
+    LEFT JOIN brands AS br ON br.id = p.id_brand 
+    ORDER BY number_of_purchases DESC
+    LIMIT 3 OFFSET 3";
+    return getAll($sql);
+}
+function getTopdiscountFooter1()
+{
+    $sql = "SELECT p.* , ca.name AS category_name, br.name AS brand_name
+    , ((p.price - p.price_sale) / p.price) * 100 AS discount_percentage
+    FROM products AS p 
+    LEFT JOIN categories AS ca ON ca.id = p.id_category 
+    LEFT JOIN brands AS br ON br.id = p.id_brand
+    ORDER BY discount_percentage DESC
+    LIMIT 3 OFFSET 0";
+    return getAll($sql);
+}
+function getTopdiscountFooter2()
+{
+    $sql = "SELECT p.* , ca.name AS category_name, br.name AS brand_name
+    , ((p.price - p.price_sale) / p.price) * 100 AS discount_percentage
+    FROM products AS p 
+    LEFT JOIN categories AS ca ON ca.id = p.id_category 
+    LEFT JOIN brands AS br ON br.id = p.id_brand
+    ORDER BY discount_percentage DESC
+    LIMIT 3 OFFSET 3";
+    return getAll($sql);
+}
+function getTopnewFooter1()
+{
+    $sql = "SELECT p.* , ca.name AS category_name, br.name AS brand_name 
+    FROM products AS p 
+    LEFT JOIN categories AS ca ON ca.id = p.id_category 
+    LEFT JOIN brands AS br ON br.id = p.id_brand 
+    ORDER BY id DESC
+    LIMIT 3 OFFSET 0";
+    return getAll($sql);
+}
+function getTopnewFooter2()
+{
+    $sql = "SELECT p.* , ca.name AS category_name, br.name AS brand_name 
+    FROM products AS p 
+    LEFT JOIN categories AS ca ON ca.id = p.id_category 
+    LEFT JOIN brands AS br ON br.id = p.id_brand 
+    ORDER BY id DESC
+    LIMIT 3 OFFSET 3";
     return getAll($sql);
 }

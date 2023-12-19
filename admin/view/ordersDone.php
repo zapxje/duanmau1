@@ -3,7 +3,7 @@
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Đơn hàng chờ xác nhận</h1>
+                <h1>Đơn hàng hoàn thành</h1>
             </div>
         </div>
     </div>
@@ -12,7 +12,7 @@
             <div class="page-title">
                 <ol class="breadcrumb text-right">
                     <li><a href="index.php">Bảng điều khiển</a></li>
-                    <li class="active">Đơn hàng chờ xác nhận</li>
+                    <li class="active">Đơn hàng hoàn thành</li>
                 </ol>
             </div>
         </div>
@@ -55,7 +55,6 @@
                                     <th class="sorting" tabindex="0" aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: auto;">HTTT</th>
                                     <th class="sorting" tabindex="0" aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: auto;">Tổng tiền</th>
                                     <th class="sorting" tabindex="0" aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: auto;">Chi tiết</th>
-                                    <th class="sorting" tabindex="0" aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: auto;">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -68,8 +67,7 @@
                                         <td><?= $order['note'] ?></td>
                                         <td><?= $order['payment_method'] ?></td>
                                         <td><?= number_format($order['total_order'], 0, ',', '.') ?></td>
-                                        <td><a href="index.php?act=ordersWait&idOrder=<?= $order['id'] ?>&orderDetailWait"><button class="btn btn-primary">Chi tiết ĐH</button></a></td>
-                                        <td><a href="index.php?act=ordersWait&idOrder=<?= $order['id'] ?>&confirmOrder"><button class="btn btn-success" onclick="return confirm('Bạn có chắc chắn xác nhận đơn hàng này !')">Xác nhận ĐH</button></a></td>
+                                        <td><a href="index.php?act=ordersDone&idOrder=<?= $order['id'] ?>&orderDetailDone"><button class="btn btn-primary">Chi tiết ĐH</button></a></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

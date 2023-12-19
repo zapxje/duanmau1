@@ -49,12 +49,12 @@
 					<div class="col-md-7">
 						<div class="row">
 							<div class="col-md-12 text-right border-bottom mb-5">
-								<h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+								<h3 class="text-black h4 text-uppercase">Tổng đơn hàng</h3>
 							</div>
 						</div>
 						<div class="row mb-3 cart__total-sub ">
 							<div class="col-md-6">
-								<span class="text-black">Subtotal</span>
+								<span class="text-black">Tổng tiền</span>
 							</div>
 							<div class="col-md-6 text-right">
 								<strong class="text-black" id="subTotal"></strong>
@@ -62,7 +62,7 @@
 						</div>
 						<div class="row mb-5 cart__total-main ">
 							<div class="col-md-6">
-								<span class="text-black">Total</span>
+								<span class="text-black">Thanh toán</span>
 							</div>
 							<div class="col-md-6 text-right">
 								<strong class="text-black" id="priceTotal"></strong>

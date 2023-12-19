@@ -126,7 +126,7 @@
                                             <a href="index.php?act=properties&id=<?= $product['id'] ?>"><button type="button" class="btn btn-outline-primary">Thuộc tính</button></a>
                                         </td>
                                         <td class="operation">
-                                            <a class="text-primary" href=""><i class="ti-pencil-alt"></i>Sửa</a>
+                                            <a class="text-primary" href="index.php?act=updateProduct&id=<?= $product['id'] ?>"><i class="ti-pencil-alt"></i>Sửa</a>
                                             <a class="text-danger" href="index.php?act=delProduct&id=<?= $product['id'] ?>" onclick="return confirm('Bạn có chắc chắn xóa sản phẩm này ?')"><i class="ti-trash"></i>Xóa</a>
                                         </td>
                                     </tr>

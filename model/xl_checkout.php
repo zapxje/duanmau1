@@ -77,6 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     //------------------------Xử lí các trường hợp thanh toán--------------------//
+    $redirectUrlBase = "http://localhost/pro1014/index.php?act=redirectCheckout";
     if (isset($_REQUEST['payment'])) {
         if ($_REQUEST['payment'] == 'MOMOATM') {
             header('Content-type: text/html; charset=utf-8');
@@ -109,8 +110,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $orderInfo = "Thanh toán qua MoMo ATM";
             $amount = "10000";
             $orderId = time() . "";
-            $redirectUrl = "https://techdevice.online/index.php?act=redirectCheckout";
-            $ipnUrl = "https://techdevice.online/index.php?act=redirectCheckout";
+            $redirectUrl = $redirectUrlBase;
+            $ipnUrl = $redirectUrlBase;
             $extraData = "";
             $requestId = time() . "";
             $requestType = "payWithATM";
@@ -169,8 +170,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $orderInfo = "Thanh toán qua MoMo";
             $amount = $_SESSION['orderTemp']['total_order'];
             $orderId = time() . "";
-            $redirectUrl = "https://techdevice.online/index.php?act=redirectCheckout";
-            $ipnUrl = "https://techdevice.online/index.php?act=redirectCheckout";
+            $redirectUrl = $redirectUrlBase;
+            $ipnUrl = $redirectUrlBase;
             $extraData = "";
             $requestId = time() . "";
             $requestType = "captureWallet";
@@ -200,7 +201,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //----------------------------------------------------------------//
         } else if ($_REQUEST['payment'] == 'VNPAY') {
             $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-            $vnp_Returnurl = "http://localhost/pro1014/index.php?act=redirectCheckout";
+            $vnp_Returnurl = $redirectUrlBase;
             $vnp_TmnCode = "CGXZLS0Z"; //Mã website tại VNPAY 
             $vnp_HashSecret = "XNBCJFAKAZQSGTARRLGCHVZWCIOIGSHN"; //Chuỗi bí mật
 

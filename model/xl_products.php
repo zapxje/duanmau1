@@ -103,6 +103,31 @@ if (isset($_REQUEST['act']) && !empty($_REQUEST['act'])) {
             }
             break;
 
+        case 'updateProduct':
+            if (isset($_REQUEST['id']) && !empty($_REQUEST['id'])) {
+                $id = $_REQUEST['id'];
+                $product = getOneProduct($id);
+                if ($product) {
+                    if (isset($_REQUEST['update'])) {
+                        $name = $_REQUEST['name'];
+                        $price = $_REQUEST['price'];
+                        $price_sale = $_REQUEST['price_sale'];
+                        $quantity = $_REQUEST['quantity'];
+                        $description = $_REQUEST['description'];
+                        updateProduct($id, $name, $price, $price_sale, $quantity, $description);
+                        $notification = 'successUpdate';
+                        $listCategories = getAllCategories();
+                        $listBrands = getAllBrands();
+                        $listProducts = getAllProducts();
+                        include_once("view/productsAd.php");
+                        return;
+                    }
+                } else {
+                    $notification = "notExist";
+                }
+            }
+            break;
+
         case 'properties':
             if (isset($_REQUEST['id']) && !empty($_REQUEST['id'])) {
                 $idProduct = $_REQUEST['id'];

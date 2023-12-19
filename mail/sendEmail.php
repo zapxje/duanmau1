@@ -31,21 +31,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email = $_REQUEST['email'];
             $message = $_REQUEST['message'];
             //Server settings
-            $mail->SMTPDebug = 0; // Enable verbose debug output
+            $mail->SMTPDebug = SMTP::DEBUG_OFF; // Enable verbose debug output
             $mail->isSMTP(); // gửi mail SMTP
             $mail->Host = 'smtp.gmail.com'; // Set the SMTP server to send through
             $mail->SMTPAuth = true; // Enable SMTP authentication
             $mail->Username = 'techdevice666@gmail.com'; // SMTP username
-            $mail->Password = 'emtb cskd vxmj poib'; // SMTP password
+            $mail->Password = 'fhlo apma jccr bwgs'; // SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
             $mail->Port = 587; // TCP port to connect to
 
             //Recipients
             $mail->setFrom('techdevice666@gmail.com', 'Tech Device');
-            $mail->addAddress('infor@phamminhgiap.online', 'Tech Infor');
+            $mail->addAddress('minhgiap1357@gmail.com', 'Tech Infor');
             // $mail->addAddress('ellen@example.com'); 
-            $mail->addReplyTo('info@example.com', 'Information');
-            // $mail->addCC('techdevice666@gmail.com');
+            // $mail->addReplyTo('info@example.com', 'Information');
+            $mail->addCC('techdevice666@gmail.com');
             // $mail->addBCC('bcc@example.com');
 
             // Attachments
@@ -53,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // $mail->addAttachment('/tmp/image.jpg', 'new.jpg'); 
 
             // Content
+            $mail->ErrorInfo;
             $mail->isHTML(true);   // Set email format to HTML
             $mail->Subject = 'Contact from customer !';
             $mail->Body = '
@@ -96,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $success = 'Gửi thành công !';
         } catch (Exception $e) {
             $notification = 'Đã xảy ra lỗi vui lòng thử lại !';
+            // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
 }

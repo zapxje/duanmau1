@@ -46,9 +46,9 @@
                             <a data-toggle="tab" href="#tab1">Tài khoản</a>
                         </li>
                         <?php if (isset($_SESSION['user']) && !empty($_SESSION['user']) && $_SESSION['user']['is_admin'] == 1) : ?>
-                            <li>
+                            <!-- <li>
                                 <a data-toggle="tab" href="#tab2">Mật khẩu</a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a data-toggle="tab" href="#tab3">Đơn hàng</a>
                             </li>

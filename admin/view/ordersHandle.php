@@ -3,7 +3,7 @@
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Đơn hàng chờ xác nhận</h1>
+                <h1>Đơn hàng đang xử lí</h1>
             </div>
         </div>
     </div>
@@ -12,7 +12,7 @@
             <div class="page-title">
                 <ol class="breadcrumb text-right">
                     <li><a href="index.php">Bảng điều khiển</a></li>
-                    <li class="active">Đơn hàng chờ xác nhận</li>
+                    <li class="active">Đơn hàng đang xử lí</li>
                 </ol>
             </div>
         </div>
@@ -68,8 +68,8 @@
                                         <td><?= $order['note'] ?></td>
                                         <td><?= $order['payment_method'] ?></td>
                                         <td><?= number_format($order['total_order'], 0, ',', '.') ?></td>
-                                        <td><a href="index.php?act=ordersWait&idOrder=<?= $order['id'] ?>&orderDetail"><button class="btn btn-primary">Chi tiết ĐH</button></a></td>
-                                        <td><a href="index.php?act=ordersWait&idOrder=<?= $order['id'] ?>&confirmOrder"><button class="btn btn-success" onclick="return confirm('Bạn có chắc chắn xác nhận đơn hàng này !')">Xác nhận hoàn thành</button></a></td>
+                                        <td><a href="index.php?act=ordersHandle&idOrder=<?= $order['id'] ?>&orderDetailHandle"><button class="btn btn-primary">Chi tiết ĐH</button></a></td>
+                                        <td><a href="index.php?act=ordersHandle&idOrder=<?= $order['id'] ?>&confirmOrderDone"><button class="btn btn-success" onclick="return confirm('Bạn có chắc chắn xác nhận đơn hàng này !')">Xác nhận hoàn thành</button></a></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

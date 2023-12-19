@@ -13,8 +13,9 @@
     include 'model/users.php';
     include 'model/orders.php';
     include 'model/carts.php';
-    include_once 'model/xl_cart.php';
     include 'model/reviews.php';
+    include 'model/validDate.php';
+    include_once 'model/xl_cart.php';
     $listCategories = getAllCategories();
     $listBrands = getAllBrands();
     $listProducts = getAllProducts();

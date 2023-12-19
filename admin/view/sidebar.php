@@ -31,7 +31,7 @@
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="ti-reload"></i><a href="index.php?act=ordersWait">Chờ xác nhận</a></li>
                         <li><i class="ti-package"></i><a href="index.php?act=ordersHandle">Đang xử lí</a></li>
-                        <li><i class="ti-check-box"></i><a href="index.php?act=order-done">Đã hoàn thành</a></li>
+                        <li><i class="ti-check-box"></i><a href="index.php?act=ordersDone">Đã hoàn thành</a></li>
                     </ul>
                 </li>
 

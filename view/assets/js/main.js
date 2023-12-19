@@ -701,7 +701,6 @@ function updateCategoryURL(categoryUrl) {
   } else {
     localStorage.removeItem('categoryCheckboxState');
     currentQueryString = currentQueryString.replace(/&attributes_category=[^&]*/, '');
-
   }
   updateURL(currentQueryString);
 }

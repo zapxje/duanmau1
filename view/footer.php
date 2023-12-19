@@ -175,8 +175,8 @@
 		<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 		<?php
-		$minPriceProduct = isset($minPriceProduct) ? $minPriceProduct : '';
-		$maxPriceProduct = isset($maxPriceProduct) ? $maxPriceProduct : '';
+		$minPriceProduct = isset($minPriceProduct) ? $minPriceProduct : 0;
+		$maxPriceProduct = isset($maxPriceProduct) ? $maxPriceProduct : 0;
 		?>
 		<script>
 			$('.price_from').val(<?= isset($price_from) ? $price_from : $minPriceProduct ?>);
@@ -184,8 +184,8 @@
 			$(function() {
 				$("#slider-range").slider({
 					range: true,
-					min: <?= isset($minPriceProduct) ? $minPriceProduct : '' ?>,
-					max: <?= isset($maxPriceProduct) ? $maxPriceProduct : '' ?>,
+					min: <?= isset($minPriceProduct) ? $minPriceProduct : 0 ?>,
+					max: <?= isset($maxPriceProduct) ? $maxPriceProduct : 0 ?>,
 					values: [<?= isset($price_from) ? $price_from : $minPriceProduct ?>,
 						<?= isset($price_to) ? $price_to : ($maxPriceProduct  / 2) ?>
 					],

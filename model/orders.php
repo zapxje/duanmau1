@@ -11,6 +11,11 @@ function getAllOrdersHandle()
 	$sql = "SELECT * FROM orders WHERE payment_status = 1 ORDER BY id desc";
 	return getAll($sql);
 }
+function getAllOrdersDone()
+{
+	$sql = "SELECT * FROM orders WHERE payment_status = 2 ORDER BY id desc";
+	return getAll($sql);
+}
 
 function addOrder($id_user, $code_order, $name, $email, $address, $city, $phone, $note, $payment_method, $total_order)
 {
@@ -68,6 +73,7 @@ function cancelOrder($idOrder, $reason)
     WHERE id =" . $idOrder;
 	return querySql($sql);
 }
+//Xác nhận từ Admin
 function confirmOrder($idOrder)
 {
 	$sql = "UPDATE orders
@@ -75,11 +81,18 @@ function confirmOrder($idOrder)
     WHERE id =" . $idOrder;
 	return querySql($sql);
 }
-
+//Xác nhận từ cả hai (Admin hoặc User)
 function confirmOrderDone($idOrder)
 {
 	$sql = "UPDATE orders
-    SET payment_status = 2
-    WHERE id =" . $idOrder;
+	SET payment_status = 2
+	WHERE id = $idOrder;
+	-- Cập nhật số lượng bán hàng trong bảng products
+	UPDATE products
+	SET number_of_purchases = number_of_purchases + 1
+	WHERE id IN (
+	SELECT id_product
+	FROM carts
+	WHERE id_order = $idOrder)";
 	return querySql($sql);
 }

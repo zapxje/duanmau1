@@ -90,41 +90,59 @@ if (isset($_GET['act']) && !empty($_GET['act'])) {
                     empty($_POST['email']) ||
                     empty($_POST['phone'])
                 ) {
+                    $message = [];
                     if (empty($_POST['full-name'])) {
-                        $message = '<div class="alert alert-danger" role="alert">
-                Hãy nhập họ và tên
-                </div>';
-                    } elseif (empty($_POST['username'])) {
-                        $message = '<div class="alert alert-danger" role="alert">
-                Hãy nhập tên đăng nhập
-                </div>';
-                    } elseif (empty($_POST['password'])) {
-                        $message = '<div class="alert alert-danger" role="alert">
-                Hãy nhập mật khẩu
-                </div>';
-                    } elseif (empty($_POST['email'])) {
-                        $message = '<div class="alert alert-danger" role="alert">
-                Hãy nhập email
-                </div>';
-                    } else {
-                        $message = '<div class="alert alert-danger" role="alert">
-                Hãy nhập số điện thoại
-                </div>';
+                        $message[] = 'Họ và tên';
                     }
-                } else {
-                    addUser(
-                        $_POST['full-name'],
-                        $_POST['username'],
-                        $_POST['password'],
-                        $_POST['email'],
-                        $_POST['phone']
-                    );
-                    $_SESSION['register']['username'] = ($_POST['username']);
-                    $_SESSION['register']['password'] = ($_POST['password']);
-                    $message = '<div class="alert alert-success" role="alert">
-                    Bạn đã đăng kí thành công
-                    </div>';
+                    if (empty($_POST['username'])) {
+                        $message[] = 'Tên đăng nhập';
+                    }
+                    if (empty($_POST['password'])) {
+                        $message[] = 'Mật khẩu';
+                    }
+                    if (empty($_POST['email'])) {
+                        $message[] = 'Email';
+                    }
+                    if (empty($_POST['phone'])) {
+                        $message[] = 'Số điện thoại';
+                    }
+                    if (!empty($message)) {
+                        $message = 'Bạn cần nhập ' . implode(', ', $message);
+                    }
+                    return;
                 }
+                //VALID DATE DỮ LIỆU TRUYỀN VÀO//
+                $username = $_POST['username'];
+                $email = $_POST['email'];
+                $phone = $_POST['phone'];
+                if (validUsername($username)) {
+                    $message = 'Tên đăng nhập đã tồn tại !';
+                    return;
+                }
+                if (validEmail($email) == false || validPhoneNumber($phone) == false) {
+                    if (validEmail($email) == false) {
+                        $message[] = 'Email';
+                    }
+                    if (validPhoneNumber($phone) == false) {
+                        $message[] = 'Số điện thoại';
+                    }
+                    if (!empty($message)) {
+                        $message = 'Bạn cần nhập đúng ' . implode(', ', $message);
+                    }
+                    return;
+                }
+                //VALID DATE DỮ LIỆU TRUYỀN VÀO//
+                addUser(
+                    $_POST['full-name'],
+                    $_POST['username'],
+                    $_POST['password'],
+                    $_POST['email'],
+                    $_POST['phone']
+                );
+                $_SESSION['register']['username'] = ($_POST['username']);
+                $_SESSION['register']['password'] = ($_POST['password']);
+                $registerStatus = true;
+                $message = 'Bạn đã đăng kí thành công ';
             }
             break;
     }
